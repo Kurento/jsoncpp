@@ -63,6 +63,7 @@ ENDMACRO(jsoncpp_parse_version)
 #SET( JSONCPP_VERSION_MINOR Y )
 #SET( JSONCPP_VERSION_PATCH Z )
 SET( JSONCPP_VERSION 1.6.2 )
+SET( PROJECT_VERSION ${JSONCPP_VERSION})
 jsoncpp_parse_version( ${JSONCPP_VERSION} JSONCPP_VERSION )
 #IF(NOT JSONCPP_VERSION_FOUND)
 #    MESSAGE(FATAL_ERROR "Failed to parse version string properly. Expect X.Y.Z")
@@ -99,7 +100,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   # using GCC
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wall -Wextra -pedantic")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -pedantic")
 endif()
 
 IF(JSONCPP_WITH_WARNING_AS_ERROR)
@@ -108,10 +109,10 @@ ENDIF(JSONCPP_WITH_WARNING_AS_ERROR)
 
 IF(JSONCPP_WITH_PKGCONFIG_SUPPORT)
 	CONFIGURE_FILE(
-		"pkg-config/jsoncpp.pc.in"
-		"pkg-config/jsoncpp.pc"
+		"pkg-config/kmsjsoncpp.pc.in"
+		"pkg-config/kmsjsoncpp.pc"
 		@ONLY)
-	INSTALL(FILES "${CMAKE_BINARY_DIR}/pkg-config/jsoncpp.pc"
+	INSTALL(FILES "${CMAKE_BINARY_DIR}/pkg-config/kmsjsoncpp.pc"
 		DESTINATION "${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/pkgconfig")
 ENDIF(JSONCPP_WITH_PKGCONFIG_SUPPORT)
 

@@ -3,9 +3,9 @@ exec_prefix=${prefix}
 libdir=${exec_prefix}/@LIBRARY_INSTALL_DIR@
 includedir=${prefix}/@INCLUDE_INSTALL_DIR@
 
-Name: jsoncpp
+Name: kmsjsoncpp
 Description: A C++ library for interacting with JSON
 Version: @JSONCPP_VERSION@
 URL: https://github.com/open-source-parsers/jsoncpp
-Libs: -L${libdir} -ljsoncpp
+Libs: -L${libdir} -lkmsjsoncpp
 Cflags: -I${includedir}

@@ -1,0 +1,3 @@
+usr/include/json usr/include/kmsjsoncpp/
+usr/lib/*.so
+usr/lib/pkgconfig/kmsjsoncpp.pc
