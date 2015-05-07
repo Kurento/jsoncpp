@@ -8,4 +8,4 @@ Description: A C++ library for interacting with JSON
 Version: @JSONCPP_VERSION@
 URL: https://github.com/open-source-parsers/jsoncpp
 Libs: -L${libdir} -lkmsjsoncpp
-Cflags: -I${includedir}
+Cflags: -I${includedir}/kmsjsoncpp
