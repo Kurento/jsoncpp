@@ -313,6 +313,9 @@ void FastWriter::writeValue(const Value& value) {
     if (!dropNullPlaceholders_)
       document_ += "null";
     break;
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     document_ += valueToString(value.asLargestInt());
     break;
@@ -383,7 +386,9 @@ void StyledWriter::writeValue(const Value& value) {
   case nullValue:
     pushValue("null");
     break;
-  case intValue:
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif  case intValue:
     pushValue(valueToString(value.asLargestInt()));
     break;
   case uintValue:
@@ -601,6 +606,9 @@ void StyledStreamWriter::writeValue(const Value& value) {
   case nullValue:
     pushValue("null");
     break;
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     pushValue(valueToString(value.asLargestInt()));
     break;
@@ -875,6 +883,9 @@ void BuiltStyledStreamWriter::writeValue(Value const& value) {
   case nullValue:
     pushValue(nullSymbol_);
     break;
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     pushValue(valueToString(value.asLargestInt()));
     break;

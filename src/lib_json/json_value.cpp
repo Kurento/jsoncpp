@@ -326,6 +326,9 @@ Value::Value(ValueType type) {
   case nullValue:
     break;
   case intValue:
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case uintValue:
     value_.int_ = 0;
     break;
@@ -358,7 +361,7 @@ Value::Value(UInt value) {
 }
 #if defined(JSON_HAS_INT64)
 Value::Value(Int64 value) {
-  initBasic(intValue);
+  initBasic(int64Value);
   value_.int_ = value;
 }
 Value::Value(UInt64 value) {
@@ -413,6 +416,9 @@ Value::Value(Value const& other)
 {
   switch (type_) {
   case nullValue:
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
   case uintValue:
   case realValue:
@@ -454,6 +460,9 @@ Value::~Value() {
   switch (type_) {
   case nullValue:
   case intValue:
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case uintValue:
   case realValue:
   case booleanValue:
@@ -513,6 +522,9 @@ bool Value::operator<(const Value& other) const {
   switch (type_) {
   case nullValue:
     return false;
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     return value_.int_ < other.value_.int_;
   case uintValue:
@@ -569,6 +581,9 @@ bool Value::operator==(const Value& other) const {
   switch (type_) {
   case nullValue:
     return true;
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     return value_.int_ == other.value_.int_;
   case uintValue:
@@ -637,6 +652,9 @@ std::string Value::asString() const {
   }
   case booleanValue:
     return value_.bool_ ? "true" : "false";
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     return valueToString(value_.int_);
   case uintValue:
@@ -686,6 +704,9 @@ converToInt (const char *str, long int *_ret)
 
 Value::Int Value::asInt() const {
   switch (type_) {
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     JSON_ASSERT_MESSAGE(isInt(), "LargestInt out of Int range");
     return Int(value_.int_);
@@ -805,6 +826,7 @@ converToInt64 (const char *str, long long int *_ret)
 
 Value::Int64 Value::asInt64() const {
   switch (type_) {
+  case int64Value:
   case intValue:
     return Int64(value_.int_);
   case uintValue:
@@ -862,6 +884,7 @@ converToUInt64 (const char *str, unsigned long long int *_ret)
 
 Value::UInt64 Value::asUInt64() const {
   switch (type_) {
+  case int64Value:
   case intValue:
     JSON_ASSERT_MESSAGE(isUInt64(), "LargestInt out of UInt64 range");
     return UInt64(value_.int_);
@@ -937,6 +960,9 @@ convertToDouble (const char *str, double *_ret)
 
 double Value::asDouble() const {
   switch (type_) {
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     return static_cast<double>(value_.int_);
   case uintValue:
@@ -994,6 +1020,9 @@ converToFloat(const char *str, float *_ret)
 
 float Value::asFloat() const {
   switch (type_) {
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     return static_cast<float>(value_.int_);
   case uintValue:
@@ -1029,6 +1058,9 @@ bool Value::asBool() const {
     return value_.bool_;
   case nullValue:
     return false;
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     return value_.int_ ? true : false;
   case uintValue:
@@ -1050,6 +1082,12 @@ bool Value::isConvertibleTo(ValueType other) const {
            (type_ == arrayValue && value_.map_->size() == 0) ||
            (type_ == objectValue && value_.map_->size() == 0) ||
            type_ == nullValue;
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+    return isInt64 () ||
+           (type_ == realValue && InRange(value_.real_, minInt64, maxInt64)) ||
+           type_ == booleanValue || type_ == nullValue;
+#endif
   case intValue:
     return isInt() ||
            (type_ == realValue && InRange(value_.real_, minInt, maxInt)) ||
@@ -1078,6 +1116,9 @@ bool Value::isConvertibleTo(ValueType other) const {
 ArrayIndex Value::size() const {
   switch (type_) {
   case nullValue:
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
   case uintValue:
   case realValue:
@@ -1445,6 +1486,9 @@ bool Value::isBool() const { return type_ == booleanValue; }
 
 bool Value::isInt() const {
   switch (type_) {
+#if defined(JSON_HAS_INT64)
+  case int64Value:
+#endif
   case intValue:
     return value_.int_ >= minInt && value_.int_ <= maxInt;
   case uintValue:
@@ -1492,6 +1536,7 @@ bool Value::isUInt() const {
 bool Value::isInt64() const {
 #if defined(JSON_HAS_INT64)
   switch (type_) {
+  case int64Value:
   case intValue:
     return true;
   case uintValue:
@@ -1520,6 +1565,7 @@ bool Value::isInt64() const {
 bool Value::isUInt64() const {
 #if defined(JSON_HAS_INT64)
   switch (type_) {
+  case int64Value:
   case intValue:
     return value_.int_ >= 0;
   case uintValue:

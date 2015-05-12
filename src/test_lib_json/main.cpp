@@ -847,7 +847,7 @@ JSONTEST_FIXTURE(ValueTest, integers) {
   // 2^40 (signed constructor arg)
   val = Json::Value(Json::Int64(1) << 40);
 
-  JSONTEST_ASSERT_EQUAL(Json::intValue, val.type());
+  JSONTEST_ASSERT_EQUAL(Json::int64Value, val.type());
 
   checks = IsCheck();
   checks.isInt64_ = true;
@@ -926,7 +926,7 @@ JSONTEST_FIXTURE(ValueTest, integers) {
   // -2^40
   val = Json::Value(-(Json::Int64(1) << 40));
 
-  JSONTEST_ASSERT_EQUAL(Json::intValue, val.type());
+  JSONTEST_ASSERT_EQUAL(Json::int64Value, val.type());
 
   checks = IsCheck();
   checks.isInt64_ = true;
@@ -949,7 +949,7 @@ JSONTEST_FIXTURE(ValueTest, integers) {
   // int64 max
   val = Json::Value(Json::Int64(kint64max));
 
-  JSONTEST_ASSERT_EQUAL(Json::intValue, val.type());
+  JSONTEST_ASSERT_EQUAL(Json::int64Value, val.type());
 
   checks = IsCheck();
   checks.isInt64_ = true;
@@ -1001,7 +1001,7 @@ JSONTEST_FIXTURE(ValueTest, integers) {
   // int64 min
   val = Json::Value(Json::Int64(kint64min));
 
-  JSONTEST_ASSERT_EQUAL(Json::intValue, val.type());
+  JSONTEST_ASSERT_EQUAL(Json::int64Value, val.type());
 
   checks = IsCheck();
   checks.isInt64_ = true;
@@ -2025,7 +2025,7 @@ JSONTEST_FIXTURE(CharReaderFailIfExtraTest, issue107) {
       "* Line 1, Column 2\n"
       "  Extra non-whitespace after JSON value.\n",
       errs);
-  JSONTEST_ASSERT_EQUAL(1, root.asInt());
+  JSONTEST_ASSERT_EQUAL(1, root.asInt ());
   delete reader;
 }
 JSONTEST_FIXTURE(CharReaderFailIfExtraTest, commentAfterObject) {

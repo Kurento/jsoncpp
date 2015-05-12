@@ -64,6 +64,9 @@ enum ValueType {
   nullValue = 0, ///< 'null' value
   intValue,      ///< signed integer value
   uintValue,     ///< unsigned integer value
+#if defined(JSON_HAS_INT64)
+  int64Value,    ///< 64 bits signed integer value
+#endif
   realValue,     ///< double value
   stringValue,   ///< UTF-8 string value
   booleanValue,  ///< bool value
