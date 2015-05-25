@@ -57,7 +57,7 @@ const LargestUInt Value::maxLargestUInt = LargestUInt(-1);
 
 template <typename A, typename T, typename U>
 static inline bool IsInRange(A d, T min, U max) {
-  return d >= min && d <= max;
+  return d >= (A) min && d <= (A) max;
 }
 
 #if !defined(JSON_USE_INT64_DOUBLE_CONVERSION)
@@ -256,8 +256,8 @@ Value::CZString::CZString(const CZString& other)
                 : other.cstr_)
 {
   storage_.policy_ = (other.cstr_
-                 ? (other.storage_.policy_ == noDuplication
-                     ? noDuplication : duplicate)
+                 ? (other.storage_.policy_ == (unsigned int) noDuplication
+                     ? (unsigned int) noDuplication : (unsigned int) duplicate)
                  : other.storage_.policy_);
   storage_.length_ = other.storage_.length_;
 }
@@ -1041,7 +1041,7 @@ float Value::asFloat() const {
   case booleanValue:
     return value_.bool_ ? 1.0f : 0.0f;
   case stringValue: {
-    float val;
+    float val = 0.0;
 
     if (!converToFloat(asString().c_str(), &val)) {
       break;

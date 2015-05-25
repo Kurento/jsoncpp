@@ -388,7 +388,8 @@ void StyledWriter::writeValue(const Value& value) {
     break;
 #if defined(JSON_HAS_INT64)
   case int64Value:
-#endif  case intValue:
+#endif
+  case intValue:
     pushValue(valueToString(value.asLargestInt()));
     break;
   case uintValue:
