@@ -768,6 +768,9 @@ Value::UInt Value::asUInt() const {
   case intValue:
     JSON_ASSERT_MESSAGE(isUInt(), "LargestInt out of UInt range");
     return UInt(value_.int_);
+  case int64Value:
+    JSON_ASSERT_MESSAGE(isUInt(), "Int64 out of UInt range");
+    return UInt(value_.int_);
   case uintValue:
     JSON_ASSERT_MESSAGE(isUInt(), "LargestUInt out of UInt range");
     return UInt(value_.uint_);
