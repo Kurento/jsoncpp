@@ -1,3 +1,10 @@
+kmsjsoncpp (1.6.3-1kurento1) UNRELEASED; urgency=medium
+
+  [ Jose Antonio Santos Cadenas ]
+  * debian/control: Fix syntax
+
+ -- Juan Navarro <juan.navarro@gmx.es>  Mon, 04 Feb 2019 17:31:32 +0100
+
 kmsjsoncpp (1.6.2) testing; urgency=medium
 
   * Initial release
