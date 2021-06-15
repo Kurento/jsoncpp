@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Kurento Maintenance Team <kurento@googlegroups.com>
 Build-Depends:
  cmake,
- debhelper-compat (= 12),
+ debhelper-compat (= 13),
  pkg-config,
 Standards-Version: 4.5.1
 Rules-Requires-Root: no
