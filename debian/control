@@ -9,8 +9,8 @@ Build-Depends:
 Standards-Version: 4.5.1
 Rules-Requires-Root: no
 Homepage: https://www.kurento.org/
-Vcs-Git: https://github.com/Kurento/kms-jsonrpc.git
-Vcs-Browser: https://github.com/Kurento/kms-jsonrpc.git
+Vcs-Git: https://github.com/Kurento/jsoncpp.git
+Vcs-Browser: https://github.com/Kurento/jsoncpp.git
 
 Package: kmsjsoncpp
 Architecture: any
