@@ -18,6 +18,6 @@ Description: Kurento jsoncpp library
 
 Package: kmsjsoncpp-dev
 Architecture: any
-Depends: kmsjsoncpp (= ${binary:Version})
+Depends: kmsjsoncpp (= ${binary:Version}), ${misc:Depends}
 Description: Kurento jsonrpc library
  Implementation of the jsonRPC protocol in C++
