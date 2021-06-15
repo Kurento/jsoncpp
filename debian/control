@@ -17,7 +17,7 @@ Architecture: any
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
-Description: Kurento jsoncpp library
+Description: jsoncpp library fork for Kurento
  Implementation of the jsonRPC protocol in C++
 
 Package: kmsjsoncpp-dev
@@ -25,5 +25,5 @@ Architecture: any
 Depends:
  kmsjsoncpp (= ${binary:Version}),
  ${misc:Depends},
-Description: Kurento jsonrpc library
+Description: jsoncpp dev library fork for Kurento
  Implementation of the jsonRPC protocol in C++
