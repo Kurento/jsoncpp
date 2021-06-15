@@ -7,7 +7,7 @@ Build-Depends: debhelper-compat (= 12),
                pkg-config
 Standards-Version: 3.9.4
 Homepage: http://kurento.org
-Vcs-Git: git://github.com/Kurento/kms-jsonrpc.git
+Vcs-Git: https://github.com/Kurento/kms-jsonrpc.git
 Vcs-Browser: https://github.com/Kurento/kms-jsonrpc.git
 
 Package: kmsjsoncpp
