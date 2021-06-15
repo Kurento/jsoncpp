@@ -2,7 +2,7 @@ Source: kmsjsoncpp
 Section: utils
 Priority: optional
 Maintainer: Kurento Maintenance Team <kurento@googlegroups.com>
-Build-Depends: debhelper (>= 12~),
+Build-Depends: debhelper-compat (= 12),
                cmake,
                pkg-config
 Standards-Version: 3.9.4
